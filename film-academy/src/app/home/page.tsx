@@ -191,6 +191,159 @@ const page = () => {
         </div>
       </section>
 
+      <section className="p-4">
+        <div className="w-full bg-[#221E19] rounded-tr-[50px] overflow-hidden">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Left image: fixed width */}
+            <div className="relative w-full md:w-[440px] h-[240px] sm:h-[300px] md:h-[512px] overflow-hidden">
+              <Image
+                src="/images/happy-img-1.png"
+                alt="Choir group"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            {/* Right side: flex-grow */}
+            <div className="flex flex-col gap-4 flex-1">
+              {/* Top right: spans full remaining width */}
+              <div className="relative w-full h-[240px] overflow-hidden">
+                <Image
+                  src="/images/kids-img-1.png"
+                  alt="School kids"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Bottom row: two equal flex items */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="relative w-full h-[256px] overflow-hidden">
+                  <Image
+                    src="/images/group-img-1.png"
+                    alt="Puppet workshop"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative w-full h-[256px] overflow-hidden">
+                  <Image
+                    src="/images/interview-img-1.png"
+                    alt="On‑stage interview"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="p-4">
+        <div className="w-full bg-[#221E19] overflow-hidden">
+          {/* center a 1360px‑wide container inside the full‑width section */}
+          <div className="max-w-[1360px] mx-auto h-[655px] pt-[97px] pb-[97px] px-[233px]">
+            {/* your fixed 894×461 inner box */}
+            <div
+              className="
+            relative
+            w-[894px] h-[461px]
+            mx-auto
+            flex flex-col justify-between items-center
+          "
+            >
+              {/* icon row (1018×300 shifted left & down per Figma) */}
+              <div
+                className="
+              flex
+              w-[1018px] h-[300px]
+              ml-[-63px] mt-[16px]
+              items-center justify-center
+              gap-[82px]
+            "
+              >
+                {/* active TV card */}
+                <div
+                  className="
+                w-[201px] h-[300px]
+                rounded-[20px]
+                bg-[#221E19]
+                border border-[#FDD07640]
+                shadow-[0px_4px_18px_0px_rgba(0,0,0,0.5)]
+                flex flex-col items-center justify-center
+              "
+                >
+                  <Image
+                    src="/svgs/tv-icon.svg"
+                    alt="TV"
+                    width={100}
+                    height={100}
+                  />
+                  <span className="mt-4 text-white">Entertain</span>
+                </div>
+
+                {/* secondary icons */}
+                <div className="w-[120px] h-[120px] flex items-center justify-center">
+                  <Image
+                    src="/svgs/learn-icon.svg"
+                    alt="Education"
+                    width={120}
+                    height={120}
+                  />
+                </div>
+                <div className="w-[120px] h-[120px] flex items-center justify-center">
+                  <Image
+                    src="/svgs/speak-icon.svg"
+                    alt="Discovery"
+                    width={120}
+                    height={120}
+                  />
+                </div>
+              </div>
+
+              {/* mission text */}
+              <div className="text-center text-white">
+                <div className="font-bold">MISSION:</div>
+                <p>
+                  To advance and promote the entertainment industry through
+                  skilling committed, trustworthy, honest, transparent and
+                  disciplined performing artists.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="p-4">
+        <div className="w-full">
+          {/* Hero image */}
+          <div className="relative w-full h-[778px] mx-auto overflow-hidden">
+            <Image
+              src="/images/graduation-img.png"
+              alt="Graduation group"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* About block */}
+          <div className="bg-[#221E19] rounded-b-[50px] px-4 sm:px-8 md:px-16 lg:px-24 py-8 sm:py-12">
+            <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold mb-4">
+              ABOUT
+            </h2>
+            <p className="max-w-3xl mx-auto text-center text-white leading-relaxed">
+              The Centre was founded in 2010 by Mariam Ndagire to train Ugandans
+              mainly focusing on youth in Writing, Acting, Directing,
+              Cinematography, Editing, Sound recording and Vocal training with
+              an aim of impacting change in the Entertainment industry and the
+              Ugandan Society.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

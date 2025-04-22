@@ -80,7 +80,7 @@ const HeaderHero: React.FC = () => {
                 ))}
               </ul>
               <div className="flex justify-center mt-4">
-                <Button asChild className="rounded h-10">
+                <Button asChild>
                   <Link href="/contact" onClick={() => setMenuOpen(false)}>
                     Contact Us
                   </Link>
