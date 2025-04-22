@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { AiOutlineHome } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
+import { PageBanner } from '@/components/PageBanner';
 
 const trainers = [
   {
@@ -44,25 +45,17 @@ export default function Page() {
   return (
     <div className="w-full pb-16">
       {/* Banner */}
-      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[704px]">
-        <Image
-          src="/images/trainer-img-2.png"
-          alt="Trainers banner"
-          fill
-          className="object-cover"
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <h1 className="absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#FDD076]">
-          Trainers/Mentors
-        </h1>
-        <button
-          onClick={() => router.push('/home')}
-          className="absolute top-4 right-4 p-2 rounded-full hover:scale-110 transition-transform"
-        >
-          <AiOutlineHome size={40} style={{ color: '#FDD076' }} />
-        </button>
-      </div>
+      <PageBanner
+        imageSrc="/images/trainer-img-2.png"
+        alt="Trainers and Mentors"
+        heightClasses="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"
+        titleLines={['Trainers/Mentors']}
+        showHomeIcon={true}
+        contentPosition="center"
+        contentAlignY="center"
+        contentPaddingX="px-6 lg:px-0"
+        buttonPosition="underTitle" 
+      />
 
       {/* Trainers grid */}
       <div className="max-w-[1082px] mx-auto mt-[64px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[43px]">

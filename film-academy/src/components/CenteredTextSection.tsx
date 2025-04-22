@@ -27,7 +27,7 @@ export const CenteredTextSection: React.FC<CenteredTextSectionProps> = ({
         flex items-center justify-center
       `}
     >
-      <div className="max-w-3xl text-center text-white font-inter text-base sm:text-lg leading-relaxed px-4">
+      <div className="max-w-4xl text-center text-white font-inter text-base sm:text-lg leading-relaxed px-4">
         {children}
       </div>
     </div>

@@ -10,6 +10,7 @@ import { CenteredTextSection } from '@/components/CenteredTextSection';
 import { BannerWithCaption } from '@/components/BannerWithCaption';
 import { Footer } from '@/components/layouts/footer';
 import Link from 'next/link';
+import { PageBanner } from '@/components/PageBanner';
 
 const galleryImages = [
   '/images/classes/classes-img-2.png',
@@ -26,41 +27,17 @@ export default function ClassesPage() {
   return (
     <div className="w-full flex flex-col space-y-32">
       {/* Banner */}
-      <div className="relative w-full h-[705px]">
-        <Image
-          src="/images/classes/classes-img.png"
-          alt="Classes banner"
-          fill
-          className="object-cover"
-          quality={100}
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
-
-        {/* Home icon */}
-        <button
-          onClick={() => router.push('/home')}
-          className="absolute top-4 right-4 p-2 text-[#FDD076] hover:scale-110 transition"
-        >
-          <AiOutlineHome size={40} />
-        </button>
-
-        {/* Left‑side text & Contact button */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start max-w-[1360px] mx-auto px-6 lg:px-16 space-y-6">
-          <div
-            className="text-[#FDD076] font-bold leading-tight
-                          text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem]"
-          >
-            <div>DRAMA</div>
-            <div>FILM</div>
-            <div>MUSIC</div>
-            <div>DANCE</div>
-          </div>
-          <Button asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
-        </div>
-      </div>
+      <PageBanner
+        imageSrc="/images/classes/classes-img.png"
+        titleLines={['DRAMA', 'FILM', 'MUSIC', 'DANCE']}
+        buttonLabel="Contact Us"
+        buttonHref="/contact"
+        contentPosition="left"
+        contentAlignY="top"
+        contentPaddingX="px-4 lg:px-0"
+        buttonPosition="bottom"
+        buttonOffsetX="left-0"
+      />
 
       {/* Stage Production Section */}
       <section
