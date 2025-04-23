@@ -3,7 +3,7 @@ import { Header } from '@/components/layouts/header';
 
 import Image from 'next/image';
 
-const page = () => {
+const HomePage = () => {
   return (
     <div>
       <Header />
@@ -349,4 +349,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default HomePage;
