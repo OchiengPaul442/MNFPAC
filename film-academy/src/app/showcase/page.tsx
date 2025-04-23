@@ -26,14 +26,14 @@ const galleryData: GalleryItem[] = [
 
 export default function AlumniPage() {
   return (
-    <div className="flex flex-col space-y-32">
+    <div className="flex flex-col">
       {/* Banner */}
       <PageBanner
         imageSrc="/images/showcase/showcase-img-1.png"
         alt="Alumni & Achievement"
         heightClasses="h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px]"
         titleLines={['ALUMNI &', 'ACHIEVEMENT']}
-        buttonLabel="Contact Us"
+        buttonLabel="Contact Us"
         buttonHref="/contact"
         buttonPosition="bottom"
         contentPosition="left"
@@ -43,40 +43,43 @@ export default function AlumniPage() {
         gradientWidth="w-1/3"
       />
 
-      {/* Centered text */}
-      <CenteredTextSection heightClasses="h-[160px]">
-        We&apos;ve skilled over a thousand creatives, many of whom are now
-        successful professionals and contributing to the growth of the industry.
-        We are immensely proud of our alumni who are not only thriving in their
-        careers but also using their creative works to positively impact
-        society.
-      </CenteredTextSection>
+      {/* Centered text - improved for better responsiveness */}
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <CenteredTextSection heightClasses="min-h-[120px]">
+          <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto text-center leading-relaxed">
+            We&apos;ve skilled over a thousand creatives, many of whom are now
+            successful professionals and contributing to the growth of the
+            industry. We are immensely proud of our alumni who are not only
+            thriving in their careers but also using their creative works to
+            positively impact society.
+          </p>
+        </CenteredTextSection>
+      </div>
 
-      {/* Gallery */}
-      <Gallery galleryData={galleryData} />
+      {/* Gallery - improved for better responsiveness and centering */}
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <Gallery galleryData={galleryData} />
+      </div>
 
       <Footer />
     </div>
   );
 }
 
-function Gallery({
-  galleryData,
-}: {
-  galleryData: { id: string; src: string; alt: string }[];
-}) {
+function Gallery({ galleryData }: { galleryData: GalleryItem[] }) {
   return (
-    <div className="w-full p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+    <div className="w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 justify-items-center">
         {galleryData.map((item, idx) => (
-          <ImageTile
-            key={item.id}
-            id={item.id}
-            href={`/showcase/${item.id}`}
-            src={item.src}
-            alt={item.alt}
-            index={idx}
-          />
+          <div key={item.id} className="w-full">
+            <ImageTile
+              id={item.id}
+              href={`/showcase/${item.id}`}
+              src={item.src}
+              alt={item.alt}
+              index={idx}
+            />
+          </div>
         ))}
       </div>
     </div>

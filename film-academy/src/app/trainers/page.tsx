@@ -56,31 +56,43 @@ export default function Page() {
         buttonPosition="underTitle"
       />
 
-      {/* Trainers grid */}
-      <div className="max-w-[1082px] mx-auto mt-[64px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[43px]">
-        {trainers.map((t) => (
-          <div key={t.name} className="w-[332px] h-[304px]">
-            {/* image */}
-            <div className="relative w-full h-[240px] overflow-hidden rounded-tl-[20px] rounded-tr-[20px]">
-              <Image
-                src={t.photo}
-                alt={t.name}
-                fill
-                className="object-cover"
-                quality={100}
-              />
+      {/* Trainers grid - Improved responsiveness and centering */}
+      <div className="container mx-auto px-4 mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          {trainers.map((trainer) => (
+            <div
+              key={trainer.name}
+              className="w-full max-w-sm flex flex-col shadow-lg rounded-t-2xl overflow-hidden"
+            >
+              {/* Image container with consistent aspect ratio */}
+              <div className="relative w-full pt-[75%]">
+                <Image
+                  src={trainer.photo}
+                  alt={trainer.name}
+                  fill
+                  className="object-cover absolute inset-0 rounded-t-2xl"
+                  quality={100}
+                />
+              </div>
+
+              {/* Text content */}
+              <div className="bg-gray-900 p-4 flex-grow flex flex-col justify-center">
+                <h3 className="text-lg font-medium text-white">
+                  {trainer.name}
+                </h3>
+                <p className="text-sm text-gray-300">{trainer.role}</p>
+              </div>
             </div>
-            {/* text */}
-            <div className="h-[64px] bg-gray-900 flex flex-col justify-center px-4">
-              <h3 className="text-lg font-medium text-white">{t.name}</h3>
-              <p className="text-sm text-gray-300">{t.role}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Back arrow */}
-      <button onClick={() => router.back()} className="fixed bottom-6 left-6">
+      {/* Back arrow - improved for mobile */}
+      <button
+        onClick={() => router.back()}
+        className="fixed bottom-6 left-6 z-10 bg-gray-800 bg-opacity-70 rounded-full p-2 hover:bg-opacity-100 transition-all"
+        aria-label="Go back"
+      >
         <Image
           src="/svgs/back-icon.svg"
           alt="Back"
