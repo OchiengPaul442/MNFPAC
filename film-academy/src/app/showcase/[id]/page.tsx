@@ -38,7 +38,7 @@ export default function ShowcasePage() {
       />
 
       <section className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
-        <div className="w-full md:w-1/2 h-[240px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-lg relative">
+        <div className="w-full md:w-1/2 h-[240px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden rounded-l-[20px] relative">
           <Image
             src={person.bioImageSrc}
             alt={person.bioImageAlt}
@@ -48,8 +48,10 @@ export default function ShowcasePage() {
             priority
           />
         </div>
-        <div className="w-full md:w-1/2 text-white text-lg leading-relaxed">
-          {person.bioText}
+        <div className="w-full md:flex-1 flex items-center justify-center">
+          <p className="text-white text-lg leading-relaxed text-center">
+            {person.bioText}
+          </p>
         </div>
       </section>
 
