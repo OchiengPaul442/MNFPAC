@@ -60,13 +60,13 @@ const DarkPanel = ({
 };
 
 const IconWithLabel = ({ iconSrc, label, bgColor }: IconWithLabelProps) => (
-  <div className="flex items-center space-x-3">
+  <div className="flex flex-col items-center space-y-2">
     <div
       className={`w-16 h-16 ${bgColor} rounded-lg flex items-center justify-center`}
     >
       <Image src={iconSrc} alt={label} width={24} height={24} />
     </div>
-    <span className="text-white text-lg">{label}</span>
+    <span className="text-white text-lg text-center">{label}</span>
   </div>
 );
 
@@ -95,27 +95,33 @@ const HomePage = () => {
       {/* Success Section */}
       <Section>
         <DarkPanel roundedTop>
-          <div className="w-full md:w-[1132px] mx-auto flex flex-col items-center py-16 md:py-24 px-4">
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium text-center mb-16 md:mb-24">
+          <div className="max-w-7xl mx-auto flex flex-col items-center px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium text-center mb-12 md:mb-16">
               Success is just around the corner.
             </h2>
 
-            <div className="flex flex-col md:flex-row items-center justify-center w-full gap-y-8 md:gap-x-[173px]">
-              <IconWithLabel
-                iconSrc="/svgs/music-icon.svg"
-                label="Music"
-                bgColor="bg-yellow-500"
-              />
-              <IconWithLabel
-                iconSrc="/svgs/film-icon.svg"
-                label="Film"
-                bgColor="bg-purple-500"
-              />
-              <IconWithLabel
-                iconSrc="/svgs/drama-icon.svg"
-                label="Drama"
-                bgColor="bg-green-500"
-              />
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-8 md:gap-x-16">
+              <div className="flex justify-center">
+                <IconWithLabel
+                  iconSrc="/svgs/music-icon.svg"
+                  label="Music"
+                  bgColor="bg-yellow-500"
+                />
+              </div>
+              <div className="flex justify-center">
+                <IconWithLabel
+                  iconSrc="/svgs/film-icon.svg"
+                  label="Film"
+                  bgColor="bg-purple-500"
+                />
+              </div>
+              <div className="flex justify-center">
+                <IconWithLabel
+                  iconSrc="/svgs/drama-icon.svg"
+                  label="Drama"
+                  bgColor="bg-green-500"
+                />
+              </div>
             </div>
           </div>
         </DarkPanel>
