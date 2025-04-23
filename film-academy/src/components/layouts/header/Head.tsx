@@ -49,9 +49,6 @@ const HeaderHero: React.FC = () => {
                 <li>
                   <Link href="/trainers">Trainers</Link>
                 </li>
-                <li>
-                  <Link href="/about">About</Link>
-                </li>
               </ul>
               <Button asChild className="rounded h-10 md:h-11">
                 <Link href="/contact">Contact Us</Link>

@@ -59,7 +59,7 @@ function ProfileBanner({ person }: { person: PersonData }) {
     <PageBanner
       imageSrc={person.bannerSrc}
       alt={person.bannerAlt}
-      // heightClasses="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[200px]"
+      heightClasses="h-[300px] sm:h-[400px] md:h-[500px] lg:h-[200px]"
       titleLines={[]} // no title on profile pages
       buttonLabel="Contact Us"
       buttonHref="/contact"
