@@ -1,151 +1,178 @@
 import { Footer } from '@/components/layouts/footer';
 import { Header } from '@/components/layouts/header';
-
 import Image from 'next/image';
+import { ReactNode } from 'react';
+
+// Type definitions for component props
+interface SectionProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface DarkPanelProps {
+  children: ReactNode;
+  className?: string;
+  roundedTop?: boolean;
+  roundedBottom?: boolean;
+  roundedAll?: boolean;
+}
+
+interface IconWithLabelProps {
+  iconSrc: string;
+  label: string;
+  bgColor: string;
+}
+
+interface ResponsiveImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}
+
+// Reusable components for better structure and reduced repetition
+const Section = ({ children, className = '' }: SectionProps) => (
+  <section className={`w-full py-8 px-4 ${className}`}>{children}</section>
+);
+
+const DarkPanel = ({
+  children,
+  className = '',
+  roundedTop = false,
+  roundedBottom = false,
+  roundedAll = false,
+}: DarkPanelProps) => {
+  const getRoundedClasses = (): string => {
+    if (roundedAll) return 'rounded-[50px]';
+    if (roundedTop && roundedBottom) return 'rounded-[50px]';
+    if (roundedTop) return 'rounded-tl-[50px] rounded-tr-[50px]';
+    if (roundedBottom) return 'rounded-bl-[50px] rounded-br-[50px]';
+    return '';
+  };
+
+  return (
+    <div
+      className={`w-full bg-[#221E19] overflow-hidden shadow-[0_4px_8px_rgba(0,0,0,0.25)] ${getRoundedClasses()} ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
+const IconWithLabel = ({ iconSrc, label, bgColor }: IconWithLabelProps) => (
+  <div className="flex items-center space-x-3">
+    <div
+      className={`w-16 h-16 ${bgColor} rounded-lg flex items-center justify-center`}
+    >
+      <Image src={iconSrc} alt={label} width={24} height={24} />
+    </div>
+    <span className="text-white text-lg">{label}</span>
+  </div>
+);
+
+const ResponsiveImage = ({
+  src,
+  alt,
+  className = '',
+  priority = false,
+}: ResponsiveImageProps) => (
+  <div className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[574px] overflow-hidden">
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className={`object-cover ${className}`}
+      priority={priority}
+    />
+  </div>
+);
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <section className="p-4">
-        <div className="relative w-full bg-[#221E19] rounded-tl-[50px] rounded-tr-[50px] shadow-[0_4px_8px_rgba(0,0,0,0.25)] overflow-hidden">
-          {/* Inner box: full‑width on mobile, fixed 1132px at md+, offset via margin */}
-          <div className="w-full md:w-[1132px] h-[391px] mt-[136px] mx-auto flex flex-col items-center py-4 gap-[173px]">
-            {/* Heading */}
-            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium text-center">
-              Successes is just around the corner.
+
+      {/* Success Section */}
+      <Section>
+        <DarkPanel roundedTop>
+          <div className="w-full md:w-[1132px] mx-auto flex flex-col items-center py-16 md:py-24 px-4">
+            <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-medium text-center mb-16 md:mb-24">
+              Success is just around the corner.
             </h2>
 
-            {/* Icons row */}
             <div className="flex flex-col md:flex-row items-center justify-center w-full gap-y-8 md:gap-x-[173px]">
-              {/* Music */}
-              <div className="flex items-center space-x-3">
-                <div className="w-16 h-16 bg-yellow-500 rounded-lg flex items-center justify-center">
-                  <Image
-                    src="/svgs/music-icon.svg"
-                    alt="Music"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-                <span className="text-white text-lg">Music</span>
-              </div>
-
-              {/* Film */}
-              <div className="flex items-center space-x-3">
-                <div className="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center">
-                  <Image
-                    src="/svgs/film-icon.svg"
-                    alt="Film"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-                <span className="text-white text-lg">Film</span>
-              </div>
-
-              {/* Drama */}
-              <div className="flex items-center space-x-3">
-                <div className="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center">
-                  <Image
-                    src="/svgs/drama-icon.svg"
-                    alt="Drama"
-                    width={24}
-                    height={24}
-                  />
-                </div>
-                <span className="text-white text-lg">Drama</span>
-              </div>
+              <IconWithLabel
+                iconSrc="/svgs/music-icon.svg"
+                label="Music"
+                bgColor="bg-yellow-500"
+              />
+              <IconWithLabel
+                iconSrc="/svgs/film-icon.svg"
+                label="Film"
+                bgColor="bg-purple-500"
+              />
+              <IconWithLabel
+                iconSrc="/svgs/drama-icon.svg"
+                label="Drama"
+                bgColor="bg-green-500"
+              />
             </div>
           </div>
+        </DarkPanel>
+      </Section>
+
+      {/* Graduation Banner */}
+      <Section>
+        <ResponsiveImage
+          src="/images/graduation-banner.png"
+          alt="Graduation ceremony"
+          priority={true}
+        />
+      </Section>
+
+      {/* Call Now Section */}
+      <Section className="py-4">
+        <div className="relative max-w-[1127px] h-[200px] mx-auto">
+          <DarkPanel roundedBottom className="absolute w-full h-full">
+            <div className="relative h-full">
+              {/* Call Now Banner */}
+              <div className="absolute left-[25px]">
+                <div className="relative w-[160px] h-[48px]">
+                  <Image
+                    src="/svgs/call-banner.svg"
+                    alt="Decorative flourish"
+                    fill
+                    className="object-contain"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center text-lg text-red-500 font-bold">
+                    CALL NOW!
+                  </span>
+                </div>
+              </div>
+
+              {/* Body Copy */}
+              <div className="flex items-center justify-center h-full px-6 sm:px-12">
+                <p className="text-white text-sm sm:text-base leading-relaxed text-center max-w-2xl">
+                  Everyone has a story to tell, a song to sing, and a talent to
+                  share. You have a dream, an unseen dream, waiting to be caught
+                  up with. Trust in Us, develop your skills, and let us help you
+                  unleash your full{' '}
+                  <span className="text-yellow-500 font-semibold">
+                    POTENTIAL...
+                  </span>
+                </p>
+              </div>
+            </div>
+          </DarkPanel>
         </div>
-      </section>
+      </Section>
 
-      <section className="w-full overflow-hidden p-4">
-        <div className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[574px]">
-          <Image
-            src="/images/graduation-banner.png"
-            alt="Graduation ceremony"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      </section>
-
-      <section className="w-full p-4">
-        <div
-          className="
-            w-full md:w-[1127px] h-auto md:h-[254px]
-            bg-[#221E19]
-            rounded-bl-[50px] rounded-br-[50px]
-            mx-auto
-            grid grid-rows-[auto_1fr]
-          "
-        >
-          {/* 1) CALL NOW shape, top-left */}
-          <div className="relative w-[180px] h-[54px] sm:w-[240px] sm:h-[72px] md:w-[320px] md:h-[96px] justify-self-start self-start">
-            <Image
-              src="/svgs/call-banner.svg"
-              alt="Decorative flourish"
-              fill
-              className="object-contain"
-              priority
-            />
-            <span
-              className="
-                absolute inset-0 flex items-center justify-center
-                text-lg sm:text-xl md:text-2xl
-                text-red-500 font-semibold
-              "
-            >
-              CALL NOW!
-            </span>
-          </div>
-
-          {/* 2) Body copy, centered in the remaining space */}
-          <div className="flex items-center justify-center p-4">
-            <p className="text-white text-base leading-relaxed text-center max-w-[90%]">
-              Everyone has a story to tell, a song to sing, and a talent to
-              share. You have a dream, an unseen dream, waiting to be caught up
-              with. Trust in us, develop your skills, and let us help you
-              unleash your full{' '}
-              <span className="text-yellow-500 font-semibold">
-                POTENTIAL...
-              </span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full px-4">
-        {/* Outer panel */}
-        <div
-          className="
-          w-full bg-[#221E19]
-          rounded-[50px]
-          shadow-[0_4px_8px_rgba(0,0,0,0.25)]
-          overflow-hidden
-          py-8
-        "
-        >
-          {/* Inner box */}
-          <div
-            className="
-            w-full md:w-[982px] h-auto md:h-[394px]
-            mx-auto mt-[67.5px]
-            flex flex-col items-center gap-[48px]
-          "
-          >
-            {/* Icon (288×288 at md+) */}
-            <div
-              className="
-              relative
-              w-[180px] h-[180px]
-              sm:w-[240px] sm:h-[240px]
-              md:w-[288px] md:h-[288px]
-            "
-            >
+      {/* Vision Section */}
+      <Section>
+        <DarkPanel roundedAll className="py-16 px-4">
+          <div className="w-full md:w-[982px] mx-auto flex flex-col items-center gap-12">
+            {/* Vision Icon */}
+            <div className="relative w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] md:w-[288px] md:h-[288px]">
               <Image
                 src="/svgs/award-icon.svg"
                 alt="Vision emblem"
@@ -155,32 +182,23 @@ const HomePage = () => {
               />
             </div>
 
-            {/* Text */}
+            {/* Vision Text */}
             <div className="text-center px-4">
-              <h3 className="text-white text-base sm:text-lg font-bold uppercase">
+              <h3 className="text-white text-base sm:text-lg font-bold uppercase mb-3">
                 VISION:
               </h3>
-              <p className="text-white text-sm sm:text-base max-w-[90%] mx-auto leading-snug">
+              <p className="text-white text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
                 To be a Centre of professional training, discovery and research
                 in the Performing Arts.
               </p>
             </div>
           </div>
-        </div>
-      </section>
+        </DarkPanel>
+      </Section>
 
-      <section className="w-full px-4 py-8">
-        <div
-          className="
-        relative
-        w-full
-        h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[528px]
-        rounded-[50px]
-        overflow-hidden
-        shadow-[0_4px_8px_rgba(0,0,0,0.25)]
-        mx-auto
-      "
-        >
+      {/* Film Cut Image */}
+      <Section>
+        <div className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[528px] rounded-[50px] overflow-hidden shadow-[0_4px_8px_rgba(0,0,0,0.25)]">
           <Image
             src="/images/film-cut-img.png"
             alt="Film clapperboard"
@@ -189,12 +207,13 @@ const HomePage = () => {
             priority
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="p-4">
-        <div className="w-full bg-[#221E19] rounded-tr-[50px] overflow-hidden">
+      {/* Image Gallery Section */}
+      <Section>
+        <DarkPanel className="rounded-tr-[50px]">
           <div className="flex flex-col md:flex-row gap-4">
-            {/* Left image: fixed width */}
+            {/* Left image */}
             <div className="relative w-full md:w-[440px] h-[240px] sm:h-[300px] md:h-[512px] overflow-hidden">
               <Image
                 src="/images/happy-img-1.png"
@@ -204,9 +223,9 @@ const HomePage = () => {
               />
             </div>
 
-            {/* Right side: flex-grow */}
+            {/* Right side flex column */}
             <div className="flex flex-col gap-4 flex-1">
-              {/* Top right: spans full remaining width */}
+              {/* Top right image */}
               <div className="relative w-full h-[240px] overflow-hidden">
                 <Image
                   src="/images/kids-img-1.png"
@@ -216,9 +235,9 @@ const HomePage = () => {
                 />
               </div>
 
-              {/* Bottom row: two equal flex items */}
+              {/* Bottom row with two images */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <div className="relative w-full h-[256px] overflow-hidden">
+                <div className="relative w-full h-[240px] sm:h-[256px] overflow-hidden">
                   <Image
                     src="/images/group-img-1.png"
                     alt="Puppet workshop"
@@ -226,7 +245,7 @@ const HomePage = () => {
                     className="object-cover"
                   />
                 </div>
-                <div className="relative w-full h-[256px] overflow-hidden">
+                <div className="relative w-full h-[240px] sm:h-[256px] overflow-hidden">
                   <Image
                     src="/images/interview-img-1.png"
                     alt="On‑stage interview"
@@ -237,43 +256,18 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </DarkPanel>
+      </Section>
 
-      <section className="p-4">
-        <div className="w-full bg-[#221E19] overflow-hidden">
-          {/* center a 1360px‑wide container inside the full‑width section */}
-          <div className="max-w-[1360px] mx-auto h-[655px] pt-[97px] pb-[97px] px-[233px]">
-            {/* your fixed 894×461 inner box */}
-            <div
-              className="
-            relative
-            w-[894px] h-[461px]
-            mx-auto
-            flex flex-col justify-between items-center
-          "
-            >
-              {/* icon row (1018×300 shifted left & down per Figma) */}
-              <div
-                className="
-              flex
-              w-[1018px] h-[300px]
-              ml-[-63px] mt-[16px]
-              items-center justify-center
-              gap-[82px]
-            "
-              >
-                {/* active TV card */}
-                <div
-                  className="
-                w-[201px] h-[300px]
-                rounded-[20px]
-                bg-[#221E19]
-                border border-[#FDD07640]
-                shadow-[0px_4px_18px_0px_rgba(0,0,0,0.5)]
-                flex flex-col items-center justify-center
-              "
-                >
+      {/* Mission Section */}
+      <Section>
+        <DarkPanel>
+          <div className="py-16 md:py-24 px-4 max-w-6xl mx-auto">
+            <div className="flex flex-col items-center justify-between">
+              {/* Icon row */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-20 mb-16">
+                {/* Active TV card */}
+                <div className="w-[180px] md:w-[201px] h-[280px] md:h-[300px] rounded-[20px] bg-[#221E19] border border-[#FDD07640] shadow-[0px_4px_18px_0px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center">
                   <Image
                     src="/svgs/tv-icon.svg"
                     alt="TV"
@@ -283,29 +277,31 @@ const HomePage = () => {
                   <span className="mt-4 text-white">Entertain</span>
                 </div>
 
-                {/* secondary icons */}
-                <div className="w-[120px] h-[120px] flex items-center justify-center">
+                {/* Secondary icons */}
+                <div className="w-[100px] md:w-[120px] h-[100px] md:h-[120px] flex items-center justify-center">
                   <Image
                     src="/svgs/learn-icon.svg"
                     alt="Education"
-                    width={120}
-                    height={120}
+                    width={100}
+                    height={100}
+                    className="w-full h-full"
                   />
                 </div>
-                <div className="w-[120px] h-[120px] flex items-center justify-center">
+                <div className="w-[100px] md:w-[120px] h-[100px] md:h-[120px] flex items-center justify-center">
                   <Image
                     src="/svgs/speak-icon.svg"
                     alt="Discovery"
-                    width={120}
-                    height={120}
+                    width={100}
+                    height={100}
+                    className="w-full h-full"
                   />
                 </div>
               </div>
 
-              {/* mission text */}
-              <div className="text-center text-white">
-                <div className="font-bold">MISSION:</div>
-                <p>
+              {/* Mission text */}
+              <div className="text-center text-white max-w-2xl">
+                <div className="font-bold text-lg mb-3">MISSION:</div>
+                <p className="leading-relaxed">
                   To advance and promote the entertainment industry through
                   skilling committed, trustworthy, honest, transparent and
                   disciplined performing artists.
@@ -313,13 +309,14 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </DarkPanel>
+      </Section>
 
-      <section className="p-4">
+      {/* About Section */}
+      <Section>
         <div className="w-full">
           {/* Hero image */}
-          <div className="relative w-full h-[778px] mx-auto overflow-hidden">
+          <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[778px] mx-auto overflow-hidden">
             <Image
               src="/images/graduation-img.png"
               alt="Graduation group"
@@ -329,20 +326,22 @@ const HomePage = () => {
           </div>
 
           {/* About block */}
-          <div className="bg-[#221E19] rounded-b-[50px] px-4 sm:px-8 md:px-16 lg:px-24 py-8 sm:py-12">
-            <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold mb-4">
-              ABOUT
-            </h2>
-            <p className="max-w-3xl mx-auto text-center text-white leading-relaxed">
-              The Centre was founded in 2010 by Mariam Ndagire to train Ugandans
-              mainly focusing on youth in Writing, Acting, Directing,
-              Cinematography, Editing, Sound recording and Vocal training with
-              an aim of impacting change in the Entertainment industry and the
-              Ugandan Society.
-            </p>
-          </div>
+          <DarkPanel roundedBottom className="py-12 px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-center text-white text-xl sm:text-2xl md:text-3xl font-bold mb-6">
+                ABOUT
+              </h2>
+              <p className="text-center text-white leading-relaxed">
+                The Centre was founded in 2010 by Mariam Ndagire to train
+                Ugandans mainly focusing on youth in Writing, Acting, Directing,
+                Cinematography, Editing, Sound recording and Vocal training with
+                an aim of impacting change in the Entertainment industry and the
+                Ugandan Society.
+              </p>
+            </div>
+          </DarkPanel>
         </div>
-      </section>
+      </Section>
 
       <Footer />
     </div>
