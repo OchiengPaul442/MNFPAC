@@ -11,37 +11,36 @@ export type BannerWithCaptionProps = {
   /** Caption content—can be plain text or JSX; omit for no caption */
   caption?: React.ReactNode;
   /**
-   * Tailwind classes for the height of the banner.
-   * Default matches your Figma: 300→400→500→592px
+   * Tailwind classes for the height of the banner at different breakpoints
    */
   heightClasses?: string;
   /**
-   * Tailwind classes for the caption container.
-   * Default positions it bottom‑center with nice padding & font‑medium.
+   * Tailwind classes for the caption container
    */
   textClasses?: string;
 };
 
 export const BannerWithCaption: React.FC<BannerWithCaptionProps> = ({
   imageSrc,
-  alt = '',
+  alt = 'Banner image',
   caption,
-  heightClasses = 'h-[300px] sm:h-[400px] md:h-[500px] lg:h-[592px]',
-  textClasses = 'absolute bottom-8 inset-x-0 px-4 sm:px-8 text-center text-white text-lg font-medium',
+  heightClasses = 'h-64 sm:h-96 md:h-112 lg:h-128',
+  textClasses = 'absolute bottom-6 sm:bottom-8 inset-x-0 px-4 sm:px-8 text-center text-white text-base sm:text-lg md:text-xl font-medium',
 }) => {
   const hasCaption = Boolean(caption);
 
   return (
     <section className="relative w-full overflow-hidden">
       {/* Background image */}
-      <div className={`w-full ${heightClasses}`}>
+      <div className={`w-full ${heightClasses} relative`}>
         <Image
           src={imageSrc}
           alt={alt}
           fill
           className="object-cover"
-          quality={100}
+          quality={90}
           priority
+          sizes="100vw"
         />
       </div>
 
@@ -51,7 +50,9 @@ export const BannerWithCaption: React.FC<BannerWithCaptionProps> = ({
           <div className="absolute inset-0 bg-black/30" />
 
           {/* Caption */}
-          <div className={textClasses}>{caption}</div>
+          <div className={textClasses}>
+            <div className="max-w-4xl mx-auto">{caption}</div>
+          </div>
         </>
       )}
     </section>

@@ -8,6 +8,7 @@ export type ImageTextSectionProps = {
   alt: string;
   children: React.ReactNode;
   imagePosition?: 'left' | 'right';
+  className?: string;
 };
 
 export const ImageTextSection: React.FC<ImageTextSectionProps> = ({
@@ -15,25 +16,24 @@ export const ImageTextSection: React.FC<ImageTextSectionProps> = ({
   alt,
   children,
   imagePosition = 'left',
+  className = '',
 }) => {
   const isLeft = imagePosition === 'left';
 
   return (
-    <section className="w-full">
+    <section className={`w-full ${className}`}>
       <div
-        className={[
-          'w-full h-[624px] flex flex-col md:flex-row overflow-hidden',
-          isLeft ? 'md:flex-row' : 'md:flex-row-reverse',
-        ].join(' ')}
+        className={`flex flex-col md:flex-row ${
+          isLeft ? '' : 'md:flex-row-reverse'
+        } overflow-hidden h-auto md:h-[528px]`}
       >
-        {/* Image */}
+        {/* IMAGE HALF */}
         <div
-          className={[
-            'relative w-full md:w-[825px] h-full overflow-hidden',
+          className={`relative w-full md:w-1/2 h-64 sm:h-80 md:h-full overflow-hidden ${
             isLeft
-              ? 'rounded-tr-[20px] rounded-br-[20px]'
-              : 'rounded-tl-[20px] rounded-bl-[20px]',
-          ].join(' ')}
+              ? 'md:rounded-tr-[20px] md:rounded-br-[20px]' // image on left, round its right corners
+              : 'md:rounded-tl-[20px] md:rounded-bl-[20px]' // image on right, round its left corners
+          }`}
         >
           <Image
             src={imageSrc}
@@ -41,13 +41,20 @@ export const ImageTextSection: React.FC<ImageTextSectionProps> = ({
             fill
             className="object-cover"
             quality={100}
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
         </div>
 
-        {/* Text (now flex‑1) */}
-        <div className="flex-1 h-full flex items-center justify-center px-6">
-          <div className="text-white text-center md:text-left leading-relaxed max-w-prose">
+        {/* TEXT HALF */}
+        <div
+          className={`w-full md:w-1/2 h-full flex items-center justify-center p-6 ${
+            isLeft
+              ? 'md:rounded-tl-[20px] md:rounded-bl-[20px]' // text on right, round its left corners
+              : 'md:rounded-tr-[20px] md:rounded-br-[20px]' // text on left, round its right corners
+          }`}
+        >
+          <div className="text-white text-lg leading-relaxed text-center md:text-left">
             {children}
           </div>
         </div>
