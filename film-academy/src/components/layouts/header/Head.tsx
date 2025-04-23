@@ -19,9 +19,7 @@ const HeaderHero = () => {
 
   return (
     <header className="w-full flex flex-col">
-      {/* Hero Section: further reduced height so bottom shows */}
       <section className="relative z-40 flex flex-col bg-white/80 backdrop-blur-md overflow-hidden h-[30vh] sm:h-[40vh] rounded-bl-4xl">
-        {/* Background Overlay Image */}
         <div className="absolute inset-0">
           <Image
             src="/images/home-img-2.png"
@@ -33,10 +31,8 @@ const HeaderHero = () => {
           />
         </div>
 
-        {/* Navbar */}
         <nav className="relative z-10 bg-white/50 py-3 md:py-4 shadow-sm">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8">
-            {/* Logo */}
             <Link href="/" className="flex items-center">
               <Image
                 src="/logos/MNFPAC_LOGO.svg"
@@ -48,7 +44,6 @@ const HeaderHero = () => {
               />
             </Link>
 
-            {/* Desktop Links */}
             <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <ul className="flex space-x-4 lg:space-x-6 text-base lg:text-xl text-gray-700 font-medium">
                 {navigationLinks.map((link) => (
@@ -68,7 +63,6 @@ const HeaderHero = () => {
               </Button>
             </div>
 
-            {/* Mobile Menu Toggle */}
             <button
               className="md:hidden p-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md"
               onClick={toggleMenu}
@@ -81,39 +75,42 @@ const HeaderHero = () => {
               )}
             </button>
           </div>
-
-          {/* Mobile Menu Items */}
-          {menuOpen && (
-            <div className="md:hidden bg-white/95 backdrop-blur-lg py-4 absolute inset-x-0 top-full z-20 shadow-lg animate-fadeIn">
-              <ul className="flex flex-col items-center space-y-5 text-lg text-gray-700 font-medium">
-                {navigationLinks.map((link) => (
-                  <li key={link.path} className="w-full text-center">
-                    <Link
-                      href={link.path}
-                      onClick={closeMenu}
-                      className="block py-2 px-4 hover:bg-gray-100 transition-colors rounded-md"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex justify-center mt-5 pb-2">
-                <Button asChild className="w-3/4 max-w-xs">
-                  <Link
-                    href="/contact"
-                    onClick={closeMenu}
-                    className="block text-center py-2"
-                  >
-                    Contact Us
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          )}
         </nav>
 
-        {/* Hero Content */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-50 bg-white/90 backdrop-blur-md flex flex-col items-center justify-center px-6 animate-fadeIn">
+            <button
+              onClick={closeMenu}
+              className="absolute top-5 right-5 text-gray-800 hover:text-black transition-colors"
+              aria-label="Close menu"
+            >
+              <X size={28} />
+            </button>
+
+            <ul className="space-y-8 text-center text-2xl text-gray-800 font-semibold">
+              {navigationLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    href={link.path}
+                    onClick={closeMenu}
+                    className="hover:underline"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10">
+              <Button asChild className="px-6 py-3 text-lg">
+                <Link href="/contact" onClick={closeMenu}>
+                  Contact Us
+                </Link>
+              </Button>
+            </div>
+          </div>
+        )}
+
         <div className="relative flex flex-col items-center justify-center flex-1 px-4 sm:px-6 py-6 md:py-12">
           <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative">
             <Image
@@ -131,7 +128,6 @@ const HeaderHero = () => {
         </div>
       </section>
 
-      {/* Footer Image Section */}
       <div className="w-full px-4 relative z-10 mt-auto">
         <div className="w-full h-48 sm:h-56 md:h-[40vh] lg:h-[50vh] relative -mt-2 overflow-hidden shadow-lg rounded-br-4xl">
           <Image
