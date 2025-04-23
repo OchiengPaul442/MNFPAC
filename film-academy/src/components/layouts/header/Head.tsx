@@ -117,7 +117,7 @@ const HeaderHero = () => {
         <div className="relative flex flex-col items-center justify-center flex-1 px-4 sm:px-6 py-6 md:py-12">
           <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative">
             <Image
-              src="/logos/MNFPAC_SUB_LOGO.PNG"
+              src="/logos/MNFPAC_SUB_LOGO.png"
               alt="MNFPAC Logo"
               fill
               className="object-contain"
