@@ -1,13 +1,10 @@
-// app/alumni/page.tsx (or wherever this page lives)
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FiExternalLink } from 'react-icons/fi';
 import { PageBanner } from '@/components/PageBanner';
 import { CenteredTextSection } from '@/components/CenteredTextSection';
 import { Footer } from '@/components/layouts/footer';
+import ImageTile from '@/components/ImageTile';
 
 export type GalleryItem = {
   id: string;
@@ -56,47 +53,32 @@ export default function AlumniPage() {
       </CenteredTextSection>
 
       {/* Gallery */}
-      <div className="w-full p-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
-          {galleryData.map((item, idx) => {
-            const isLeftMost = idx % 3 === 0;
-            const isRightMost = idx % 3 === 2;
-            const borderClass = isLeftMost
-              ? 'rounded-tl-[20px] rounded-bl-[20px]'
-              : isRightMost
-                ? 'rounded-tr-[20px] rounded-br-[20px]'
-                : '';
-
-            return (
-              <Link
-                key={item.id}
-                href={`/showcase/${item.id}`}
-                className={`
-                block relative overflow-hidden ${borderClass}
-                w-full h-[240px] sm:h-[360px] md:h-[440px] lg:h-[528px]
-                transform transition-transform duration-300 ease-in-out
-                hover:scale-95
-              `}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  className="object-cover"
-                  quality={100}
-                  priority
-                />
-                <FiExternalLink
-                  size={24}
-                  className="absolute bottom-2 right-2 text-blue-500 z-10"
-                />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      <Gallery galleryData={galleryData} />
 
       <Footer />
+    </div>
+  );
+}
+
+function Gallery({
+  galleryData,
+}: {
+  galleryData: { id: string; src: string; alt: string }[];
+}) {
+  return (
+    <div className="w-full p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+        {galleryData.map((item, idx) => (
+          <ImageTile
+            key={item.id}
+            id={item.id}
+            href={`/showcase/${item.id}`}
+            src={item.src}
+            alt={item.alt}
+            index={idx}
+          />
+        ))}
+      </div>
     </div>
   );
 }

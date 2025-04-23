@@ -1,16 +1,15 @@
-// app/showcase/[id]/page.tsx
 'use client';
 
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { FiExternalLink } from 'react-icons/fi';
 import { PageBanner } from '@/components/PageBanner';
 import { BannerWithCaption } from '@/components/BannerWithCaption';
 import { Footer } from '@/components/layouts/footer';
 import { showcaseData } from '@/data/showcaseData';
 import { PersonData } from '@/data/showcaseData';
+import ImageTile from '@/components/ImageTile';
 
 export default function ShowcasePage() {
   const { id } = useParams<{ id: string }>();
@@ -61,6 +60,7 @@ export default function ShowcasePage() {
       />
 
       <RelatedProfilesSection otherProfiles={otherProfiles} />
+
       <Footer />
     </div>
   );
@@ -91,47 +91,21 @@ function RelatedProfilesSection({
       <div className="text-center text-gray-300 mb-4">
         You might also be interested in:
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        {otherProfiles.map((profile, idx) => (
-          <RelatedProfileCard key={profile.id} profile={profile} index={idx} />
-        ))}
+      <div className="w-full p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8">
+          {otherProfiles.map((profile, idx) => (
+            <ImageTile
+              key={profile.id}
+              id={profile.id}
+              href={`/showcase/${profile.id}`}
+              src={profile.bannerSrc}
+              alt={profile.bannerAlt}
+              index={idx}
+            />
+          ))}
+        </div>
       </div>
     </>
-  );
-}
-
-function RelatedProfileCard({
-  profile,
-  index,
-}: {
-  profile: PersonData;
-  index: number;
-}) {
-  const isLeft = index % 3 === 0;
-  const isRight = index % 3 === 2;
-  const corners = isLeft
-    ? 'rounded-tl-[20px] rounded-bl-[20px]'
-    : isRight
-      ? 'rounded-tr-[20px] rounded-br-[20px]'
-      : '';
-
-  return (
-    <Link
-      href={`/showcase/${profile.id}`}
-      className={`block overflow-hidden ${corners} transform transition-transform duration-300 ease-in-out hover:scale-95 h-[240px] sm:h-[360px] md:h-[440px] lg:h-[528px] relative`}
-    >
-      <Image
-        src={profile.bannerSrc}
-        alt={profile.bannerAlt}
-        fill
-        className="object-cover"
-        quality={100}
-        priority
-      />
-      <div className="absolute bottom-2 right-2 z-10">
-        <FiExternalLink size={24} />
-      </div>
-    </Link>
   );
 }
 
