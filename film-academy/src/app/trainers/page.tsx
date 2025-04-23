@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { AiOutlineHome } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { PageBanner } from '@/components/PageBanner';
 
@@ -54,7 +53,7 @@ export default function Page() {
         contentPosition="center"
         contentAlignY="center"
         contentPaddingX="px-6 lg:px-0"
-        buttonPosition="underTitle" 
+        buttonPosition="underTitle"
       />
 
       {/* Trainers grid */}

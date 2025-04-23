@@ -48,10 +48,11 @@ export default function AlumniPage() {
 
       {/* Centered text */}
       <CenteredTextSection heightClasses="h-[160px]">
-        We've skilled over a thousand creatives, many of whom are now successful
-        professionals and contributing to the growth of the industry. We are
-        immensely proud of our alumni who are not only thriving in their careers
-        but also using their creative works to positively impact society.
+        We&apos;ve skilled over a thousand creatives, many of whom are now
+        successful professionals and contributing to the growth of the industry.
+        We are immensely proud of our alumni who are not only thriving in their
+        careers but also using their creative works to positively impact
+        society.
       </CenteredTextSection>
 
       {/* Gallery */}

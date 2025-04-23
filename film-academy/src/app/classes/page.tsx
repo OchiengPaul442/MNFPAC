@@ -2,14 +2,10 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { AiOutlineHome } from 'react-icons/ai';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { ImageTextSection } from '@/components/ImageTextSection';
 import { CenteredTextSection } from '@/components/CenteredTextSection';
 import { BannerWithCaption } from '@/components/BannerWithCaption';
 import { Footer } from '@/components/layouts/footer';
-import Link from 'next/link';
 import { PageBanner } from '@/components/PageBanner';
 
 const galleryImages = [
@@ -20,8 +16,6 @@ const galleryImages = [
 ];
 
 export default function ClassesPage() {
-  const router = useRouter();
-
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -72,7 +66,7 @@ export default function ClassesPage() {
               Dive headfirst into the world of theatre! We learn acting,
               directing, and playwriting, all while developing our creativity
               and confidence. Plus, we get the thrill of performing for live
-              audiences – it's an unforgettable experience!
+              audiences – it&apos;s an unforgettable experience!
             </p>
           </div>
         </div>
@@ -307,10 +301,10 @@ export default function ClassesPage() {
               Traditional Ugandan Dances: Immerse yourself in the rich cultural
               heritage of Uganda through dynamic and captivating traditional
               dances. Dancing is a beloved pastime in Uganda, evident in the
-              numerous music videos and stage shows. It's a fantastic way to
-              stay fit, express yourself, and connect with the vibrant culture
-              of Uganda. Don't miss this opportunity to discover the joy of
-              dance.
+              numerous music videos and stage shows. It&apos;s a fantastic way
+              to stay fit, express yourself, and connect with the vibrant
+              culture of Uganda. Don&apos;t miss this opportunity to discover
+              the joy of dance.
             </p>
           </div>
         </div>
@@ -335,8 +329,8 @@ export default function ClassesPage() {
             Lights, camera, action! Our annual documentary and short film
             workshops provide students with hands-on experience in all stages of
             filmmaking. From brainstorming ideas to shooting and editing,
-            students bring their cinematic visions to life. It's an exciting and
-            rewarding experience.
+            students bring their cinematic visions to life. It&apos;s an
+            exciting and rewarding experience.
           </p>
         </div>
       </section>

@@ -1,4 +1,3 @@
-// app/showcase/[id]/page.tsx
 'use client';
 
 import React from 'react';
