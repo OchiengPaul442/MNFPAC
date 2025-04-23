@@ -10,7 +10,6 @@ const navigationLinks = [
   { name: 'Classes', path: '/classes' },
   { name: 'Showcase', path: '/showcase' },
   { name: 'Trainers', path: '/trainers' },
-  { name: 'About', path: '/about' },
 ];
 
 const HeaderHero = () => {
