@@ -24,13 +24,14 @@ export default function ClassesPage() {
       <PageBanner
         imageSrc="/images/classes/classes-img.png"
         titleLines={['DRAMA', 'FILM', 'MUSIC', 'DANCE']}
-        buttonLabel="Contact Us"
+        buttonLabel="Contact Us"
         buttonHref="/contact"
+        buttonPosition="bottom"
         contentPosition="left"
         contentAlignY="top"
-        contentPaddingX="px-4 lg:px-0"
-        buttonPosition="bottom"
-        buttonOffsetX="left-0"
+        contentPaddingX="px-8 lg:px-16"
+        showGradient
+        gradientWidth="w-1/3"
       />
 
       {/* Stage Production Section */}
@@ -244,7 +245,7 @@ export default function ClassesPage() {
         absolute bottom-8 inset-x-0
         px-4 sm:px-8
         text-center text-white
-        text-lg sm:text-xl md:text-2xl lg:text-3xl
+        text-sm sm:text-xl md:text-2xl lg:text-3xl
         font-semibold
       "
       />
@@ -274,12 +275,12 @@ export default function ClassesPage() {
         imageSrc="/images/classes/classes-img-12.png"
         alt="Ugandan Dance Workshop"
         caption={
-          <>
+          <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl">
             Experience the vibrant world of Ugandan dance! We offer a diverse
             range of classes, including contemporary and traditional styles.
             Contemporary Dance: Explore expressive and innovative movement,
             drawing inspiration from modern dance techniques.
-          </>
+          </div>
         }
       />
 
@@ -296,8 +297,8 @@ export default function ClassesPage() {
           />
 
           {/* Right‑side text block, centered */}
-          <div className="absolute inset-y-0 right-0 w-[440px] flex items-center justify-center px-4">
-            <p className="font-inter font-light text-[24px] text-center text-white">
+          <div className="absolute inset-y-0 right-0 md:w-[440px] flex items-center justify-center px-4">
+            <p className="font-inter font-light text-sm sm:text-xl md:text-2xl lg:text-3xl text-center text-white">
               Traditional Ugandan Dances: Immerse yourself in the rich cultural
               heritage of Uganda through dynamic and captivating traditional
               dances. Dancing is a beloved pastime in Uganda, evident in the
@@ -325,7 +326,7 @@ export default function ClassesPage() {
           </div>
 
           {/* Text */}
-          <p className="font-inter text-[24px] text-center text-white max-w-[695px]">
+          <p className="font-inter text-sm sm:text-xl md:text-2xl lg:text-3xl text-center text-white max-w-[695px]">
             Lights, camera, action! Our annual documentary and short film
             workshops provide students with hands-on experience in all stages of
             filmmaking. From brainstorming ideas to shooting and editing,

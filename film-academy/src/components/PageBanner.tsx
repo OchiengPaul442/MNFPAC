@@ -113,7 +113,17 @@ export const PageBanner: React.FC<PageBannerProps> = ({
             </div>
 
             {buttonPosition === 'underTitle' && buttonLabel && buttonHref && (
-              <Link href={buttonHref} className="mt-4 inline-block z-10">
+              <Link
+                href={'#'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth',
+                  });
+                }}
+                className="mt-4 inline-block z-10"
+              >
                 <span className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
                   {buttonLabel}
                 </span>
@@ -124,7 +134,14 @@ export const PageBanner: React.FC<PageBannerProps> = ({
           {/* Bottom‑positioned button */}
           {buttonPosition === 'bottom' && buttonLabel && buttonHref && (
             <Link
-              href={buttonHref}
+              href={'#'}
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: 'smooth',
+                });
+              }}
               className={`absolute bottom-8 ${buttonOffsetX} inline-block z-10`}
             >
               <span className="bg-[#0000FF] text-white px-4 py-2 rounded-lg hover:bg-[#0000FF]/70 transition">

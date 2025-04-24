@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
 
         {/* Back arrow */}
-        <Link href="#" className="absolute bottom-6 left-6">
+        <Link href="#" className="absolute max-md:top-6 md:bottom-6 left-6">
           <Image src="/svgs/back-icon.svg" alt="Back" width={40} height={40} />
         </Link>
       </footer>

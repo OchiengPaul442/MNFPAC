@@ -15,11 +15,13 @@ const navigationLinks = [
 const HeaderHero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+  }, []);
 
   return (
     <header className="w-full flex flex-col">
-      <section className="relative z-40 flex flex-col bg-white/80 backdrop-blur-md overflow-hidden h-[30vh] sm:h-[40vh] rounded-bl-4xl">
+      <section className="relative z-40 flex flex-col bg-white/80 backdrop-blur-md overflow-hidden h-[40vh] rounded-bl-4xl">
         <div className="absolute inset-0">
           <Image
             src="/images/home-img-2.png"
@@ -59,7 +61,19 @@ const HeaderHero = () => {
                 asChild
                 className="rounded h-10 md:h-11 px-4 md:px-6 shadow-md hover:shadow-lg transition-all"
               >
-                <Link href="/contact">Contact Us</Link>
+                <Link
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    closeMenu();
+                    window.scrollTo({
+                      top: document.body.scrollHeight,
+                      behavior: 'smooth',
+                    });
+                  }}
+                >
+                  Contact Us
+                </Link>
               </Button>
             </div>
 
@@ -103,7 +117,17 @@ const HeaderHero = () => {
 
             <div className="mt-10">
               <Button asChild className="px-6 py-3 text-lg">
-                <Link href="/contact" onClick={closeMenu}>
+                <Link
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    closeMenu();
+                    window.scrollTo({
+                      top: document.body.scrollHeight,
+                      behavior: 'smooth',
+                    });
+                  }}
+                >
                   Contact Us
                 </Link>
               </Button>
